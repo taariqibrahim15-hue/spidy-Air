@@ -1,0 +1,7 @@
+#include "resource.h"
+#include <windows.h>
+
+IDI_APPICON ICON "spider.ico"
+
+/* Enable Common Controls v6 (modern themed widgets) + DPI awareness */
+1 RT_MANIFEST "app.manifest"

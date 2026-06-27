@@ -1,0 +1,47 @@
+<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="wifi-auditor spider">
+  <defs>
+    <radialGradient id="body" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#5eead4"/>
+      <stop offset="55%" stop-color="#14b8a6"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </radialGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- web strands radiating behind -->
+  <g stroke="#2dd4bf" stroke-width="1" opacity="0.28" fill="none">
+    <path d="M64 64 L64 6 M64 64 L118 30 M64 64 L122 78 M64 64 L96 120
+             M64 64 L32 120 M64 64 L6 78 M64 64 L10 30"/>
+    <path d="M44 24 Q64 34 84 24 M26 50 Q64 66 102 50 M30 92 Q64 78 98 92"
+          opacity="0.6"/>
+  </g>
+
+  <g filter="url(#glow)" stroke="#0f766e" stroke-width="4"
+     stroke-linecap="round" fill="none">
+    <!-- left legs -->
+    <path d="M48 58 C30 48 22 50 12 38"/>
+    <path d="M46 66 C26 64 18 70 8 64"/>
+    <path d="M48 74 C28 80 22 88 14 92"/>
+    <path d="M52 80 C40 96 38 104 32 112"/>
+    <!-- right legs -->
+    <path d="M80 58 C98 48 106 50 116 38"/>
+    <path d="M82 66 C102 64 110 70 120 64"/>
+    <path d="M80 74 C100 80 106 88 114 92"/>
+    <path d="M76 80 C88 96 90 104 96 112"/>
+  </g>
+
+  <!-- abdomen + head -->
+  <ellipse cx="64" cy="78" rx="20" ry="24" fill="url(#body)" filter="url(#glow)"/>
+  <circle cx="64" cy="54" r="14" fill="url(#body)"/>
+  <!-- hourglass marking -->
+  <path d="M58 70 L70 70 L60 84 L68 84 L64 96 L60 84 L68 84 L58 70 Z"
+        fill="#022c22" opacity="0.55"/>
+  <!-- eyes -->
+  <circle cx="59" cy="52" r="2.6" fill="#022c22"/>
+  <circle cx="69" cy="52" r="2.6" fill="#022c22"/>
+  <circle cx="58.3" cy="51.3" r="0.9" fill="#a7f3d0"/>
+  <circle cx="68.3" cy="51.3" r="0.9" fill="#a7f3d0"/>
+</svg>

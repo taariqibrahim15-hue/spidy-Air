@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wifi-auditor · WiFi security console</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='spider.svg') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-logo" src="{{ url_for('static', filename='spider.svg') }}" alt="" />
+      <div>
+        <h1>wifi-auditor</h1>
+        <p class="tagline">passive WiFi security console</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <span class="version">v{{ version }}</span>
+      <button id="pasteBtn" class="btn btn-ghost" title="Audit saved scan text">Import scan</button>
+      <button id="scanBtn" class="btn btn-primary">
+        <span class="btn-dot"></span> Scan now
+      </button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- Summary dashboard -->
+    <section class="stats" id="stats" hidden>
+      <div class="stat-card" data-sev="total">
+        <span class="stat-num" id="s-total">0</span>
+        <span class="stat-label">networks</span>
+      </div>
+      <div class="stat-card" data-sev="CRITICAL"><span class="stat-num" id="s-CRITICAL">0</span><span class="stat-label">critical</span></div>
+      <div class="stat-card" data-sev="HIGH"><span class="stat-num" id="s-HIGH">0</span><span class="stat-label">high</span></div>
+      <div class="stat-card" data-sev="MEDIUM"><span class="stat-num" id="s-MEDIUM">0</span><span class="stat-label">medium</span></div>
+      <div class="stat-card" data-sev="LOW"><span class="stat-num" id="s-LOW">0</span><span class="stat-label">low</span></div>
+      <div class="stat-card" data-sev="INFO"><span class="stat-num" id="s-INFO">0</span><span class="stat-label">info</span></div>
+    </section>
+
+    <!-- Controls -->
+    <section class="controls" id="controls" hidden>
+      <div class="filter-group" id="sevFilter">
+        <button class="chip active" data-min="ALL">All</button>
+        <button class="chip" data-min="LOW">Low+</button>
+        <button class="chip" data-min="MEDIUM">Medium+</button>
+        <button class="chip" data-min="HIGH">High+</button>
+        <button class="chip" data-min="CRITICAL">Critical</button>
+      </div>
+      <input type="search" id="search" class="search" placeholder="Filter by SSID…" />
+    </section>
+
+    <!-- Results -->
+    <section id="results" class="results">
+      <!-- Idle / hero state -->
+      <div class="hero" id="hero">
+        <img class="hero-spider" src="{{ url_for('static', filename='spider.svg') }}" alt="" />
+        <h2>Ready to spin the web</h2>
+        <p>Run a passive scan of nearby networks and get a risk-ranked
+           security report. Nothing is connected to or attacked.</p>
+        <button class="btn btn-primary btn-lg" id="heroScan">Start scan</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>⚠ Assessment-only · read-only · use only on networks you own or are
+       authorized to assess. No password cracking, capture, or deauth.</p>
+  </footer>
+
+  <!-- Import modal -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card">
+      <h3>Import saved scan</h3>
+      <p class="modal-hint">Run <code>netsh wlan show networks mode=bssid</code>
+         and paste the output below to audit it offline.</p>
+      <textarea id="scanText" rows="10" placeholder="Paste netsh output here…"></textarea>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="modalCancel">Cancel</button>
+        <button class="btn btn-primary" id="modalRun">Audit</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="scan-overlay" id="overlay" hidden>
+    <div class="radar"><div class="radar-sweep"></div></div>
+    <p id="overlayMsg">Scanning for nearby networks…</p>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

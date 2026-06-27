@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wifi-auditor"
+version = "0.1.0"
+description = "Passive, read-only WiFi security auditing tool (assessment only)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Taariq Ibrahim" }]
+keywords = ["wifi", "security", "audit", "wlan", "assessment"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Security",
+]
+dependencies = []
+
+[project.optional-dependencies]
+ui = ["flask>=3.0"]
+
+[project.scripts]
+wifi-auditor = "wifi_auditor.cli:main"
+wifi-auditor-ui = "wifi_auditor.web:main"
+
+[project.urls]
+Homepage = "https://github.com/taariq/wifi-auditor"
+
+[tool.setuptools]
+packages = ["wifi_auditor"]
+
+[tool.setuptools.package-data]
+wifi_auditor = ["templates/*.html", "static/*"]
