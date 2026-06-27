@@ -12,12 +12,12 @@ WINDRES := windres
 
 SRC     := src
 BUILD   := build
-EXE     := $(BUILD)/wifi-auditor.exe
+EXE     := $(BUILD)/spidy-Air.exe
 
 CFLAGS   := -O2 -Wall -Wextra -municode
 CXXFLAGS := -O2 -Wall -Wextra -std=c++17 -municode -I$(SRC)
 LDFLAGS  := -municode -mwindows -static -static-libgcc -static-libstdc++
-LIBS     := -lwlanapi -lcomctl32 -lole32
+LIBS     := -lwlanapi -lcomctl32 -lole32 -lcomdlg32
 
 OBJS := $(BUILD)/wifi_scan.o $(BUILD)/main.o $(BUILD)/app_res.o
 
